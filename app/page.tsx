@@ -1,69 +1,84 @@
-import Image from "next/image";
+import { Nav } from "@/components/Nav";
+import { Footer } from "@/components/Footer";
+import { CTAButton } from "@/components/CTAButton";
+import { ExtensionButton } from "@/components/ExtensionButton";
+import { HeroMock } from "@/components/HeroMock";
+import { Reveal } from "@/components/Reveal";
+
+const features = [
+  { t: "Stealth Mode", d: "A discreet interface designed to keep QUERLY out of your visible workspace." },
+  { t: "Real-time Intelligence", d: "Identify important claims, promises and missing information as conversations unfold." },
+  { t: "Suggested Questions", d: "Get contextual prompts to ask the right questions at the right moment." },
+  { t: "Hinglish-first", d: "Built for the natural mix of Hindi and English in everyday Indian conversations." },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <Nav />
+      <main>
+        <section className="mx-auto max-w-5xl px-6 pb-24 pt-20 text-center sm:pt-28">
+          <Reveal immediate>
+            <p className="mb-6 text-sm font-medium uppercase tracking-[0.2em] text-ink-soft">Intelligence in Stealth.</p>
+            <h1 className="display">Real-time conversation intelligence that stays out of sight.</h1>
+            <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft">
+              QUERLY listens, understands and analyses conversations in the background, surfacing important insights and suggested questions when you need them.
+            </p>
+            <p className="mt-4 font-medium">Invisible interface. Intelligent assistance.</p>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+              <CTAButton />
+              <ExtensionButton />
+            </div>
+          </Reveal>
+          <Reveal delay={0.15} immediate>
+            <HeroMock />
+          </Reveal>
+        </section>
+
+        <section id="features" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24 sm:py-32">
+          <Reveal>
+            <h2 className="h2 mx-auto max-w-3xl text-center">Stay in the conversation. Stay one step ahead.</h2>
+          </Reveal>
+          <ul className="mt-16 grid gap-5 sm:grid-cols-2">
+            {features.map((f, i) => (
+              <li key={f.t}>
+                <Reveal delay={i * 0.08} className="h-full">
+                  <article className="glass glass-border h-full rounded-3xl p-8 transition duration-500 hover:-translate-y-1 hover:bg-white/75 sm:p-10">
+                    <h3 className="text-2xl font-medium tracking-tight">{f.t}</h3>
+                    <p className="mt-3 leading-relaxed text-ink-soft">{f.d}</p>
+                  </article>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section id="how-it-works" className="mx-auto max-w-4xl scroll-mt-24 px-6 py-24 text-center sm:py-32">
+          <Reveal>
+            <h2 className="h2">Present in every conversation. Visible when you need it.</h2>
+            <p className="mx-auto mt-6 max-w-xl text-lg text-ink-soft">
+              QUERLY helps you focus on the conversation while AI works quietly in the background.
+            </p>
+            <div aria-hidden="true" className="relative mx-auto mt-14 h-40 max-w-md">
+              <div className="glass glass-border absolute inset-x-0 top-0 h-24 rounded-2xl opacity-30 blur-[2px]" />
+              <div className="glass glass-border absolute inset-x-6 top-8 h-24 rounded-2xl opacity-60" />
+              <div className="glass glass-border absolute inset-x-12 top-16 h-24 rounded-2xl shadow-[0_0_60px_rgba(255,180,138,0.5)]" />
+            </div>
+          </Reveal>
+        </section>
+
+        <section className="px-6 py-24 text-center sm:py-32">
+          <Reveal>
+            <p className="font-[family-name:var(--font-script)] text-xl text-ink-soft" aria-label="QUERLY AI">QUERLY AI</p>
+            <h2 className="display mt-4">Think beyond the conversation.</h2>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+              <CTAButton />
+              <ExtensionButton />
+            </div>
+          </Reveal>
+        </section>
       </main>
-    </div>
+      <Footer />
+    </>
   );
 }
