@@ -1,20 +1,15 @@
-"use client";
-import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import type { ReactNode, CSSProperties } from "react";
 
-/** Fade/dissolve-in on scroll. */
-export function Reveal({ children, delay = 0, className, immediate = false }: { children: ReactNode; delay?: number; className?: string; immediate?: boolean }) {
-  const reduce = useReducedMotion();
+/**
+ * Scroll-reveal wrapper (fade + rise + blur-to-sharp). Pure CSS; <RevealRoot/>
+ * adds `.in` when it scrolls into view. Without JS the content is simply visible.
+ */
+export function Reveal({
+  children, delay = 0, className = "", as: Tag = "div",
+}: { children: ReactNode; delay?: number; className?: string; as?: "div" | "li" | "p" | "section" }) {
   return (
-    <motion.div
-      className={className}
-      initial={reduce ? false : { opacity: 0, y: 24, filter: "blur(10px)" }}
-      {...(immediate
-        ? { animate: { opacity: 1, y: 0, filter: "blur(0px)" } }
-        : { whileInView: { opacity: 1, y: 0, filter: "blur(0px)" }, viewport: { once: true, margin: "-60px" } })}
-      transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
+    <Tag className={`reveal ${className}`} style={{ "--d": `${delay}s` } as CSSProperties}>
       {children}
-    </motion.div>
+    </Tag>
   );
 }
