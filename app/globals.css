@@ -1,31 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  --canvas: #f7f8fa;
-  --surface: #ffffff;
-  --line: #e5e7eb;
-  --ink: #0e1116;
-  --muted: #5b6270;
-  --accent: #4f5bd5;
-  --accent-hover: #4450c4;
-  --accent-tint: #eef0ff;
-  --flag-bg: #fef3c7;
-  --flag-fg: #92400e;
-  --ask-bg: #eef0ff;
-  --ask-fg: #3730a3;
-  --miss-bg: #f1f5f9;
-  --miss-fg: #334155;
+  color-scheme: dark;
+  --canvas: #0a0b10;
+  --surface: #12141b;
+  --elevated: #171a23;
+  --line: #232733;
+  --line-strong: #3a4056;
+  --ink: #f4f5f8;
+  --muted: #9aa0af;
+  --accent: #8b93ff;
+  --logo: #b8bdff;
+  --flag-bg: rgba(251, 191, 36, 0.12);
+  --flag-fg: #fcd34d;
+  --ask-bg: rgba(139, 147, 255, 0.14);
+  --ask-fg: #c7cbff;
+  --miss-bg: rgba(148, 163, 184, 0.12);
+  --miss-fg: #cbd5e1;
 }
 
 @theme inline {
   --color-canvas: var(--canvas);
   --color-surface: var(--surface);
+  --color-elevated: var(--elevated);
   --color-line: var(--line);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
-  --color-accent-hover: var(--accent-hover);
-  --color-accent-tint: var(--accent-tint);
+  --color-logo: var(--logo);
   --color-flag-bg: var(--flag-bg);
   --color-flag-fg: var(--flag-fg);
   --color-ask-bg: var(--ask-bg);
@@ -37,44 +39,73 @@
   --font-serif: var(--font-instrument), Georgia, serif;
 }
 
-html { scroll-behavior: smooth; overflow-x: clip; }
+html { scroll-behavior: smooth; overflow-x: clip; background: var(--canvas); }
 body { background: var(--canvas); color: var(--ink); font-family: var(--font-sans); font-size: 1.0625rem; line-height: 1.6; overflow-x: clip; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+::selection { background: rgba(139, 147, 255, .35); }
 
-.h1, .h2 { font-weight: 500; letter-spacing: -0.03em; line-height: 1.05; color: var(--ink); text-wrap: balance; }
+.h1, .h2 { font-weight: 500; letter-spacing: -0.025em; line-height: 1.06; color: var(--ink); text-wrap: balance; }
 .h1 { font-size: clamp(2rem, 4.6vw, 3.75rem); }
 .h2 { font-size: clamp(1.75rem, 3.6vw, 3rem); }
-.accent-serif { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+.accent-serif { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; background: linear-gradient(90deg, #b8bdff, #ffffff); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .08em; }
 .deva { font-family: var(--font-deva), var(--font-sans); }
 
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
-.window { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 1px 2px rgba(16, 24, 40, .04), 0 12px 32px -12px rgba(16, 24, 40, .12); }
 
-.btn { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 22px; border-radius: 10px; font-size: .95rem; font-weight: 500; transition: background-color .12s ease, border-color .12s ease; }
-.btn-primary { background: var(--accent); color: #fff; }
-.btn-primary:hover { background: var(--accent-hover); }
-.btn-ghost { background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
-.btn-ghost:hover { border-color: #c9ced6; }
+/* Buttons: white pill (primary), outlined (nav), ghost */
+.btn { display: inline-flex; align-items: center; justify-content: center; height: 46px; padding: 0 24px; border-radius: 9999px; font-size: .95rem; font-weight: 500; transition: filter .12s ease, background-color .12s ease, border-color .12s ease, color .12s ease; }
+.btn-primary { background: #f4f5f8; color: #0a0b10; }
+.btn-primary:hover { filter: brightness(.9); }
+.btn-outline { height: 38px; padding: 0 16px; border: 1px solid var(--line-strong); color: var(--ink); background: transparent; }
+.btn-outline:hover { background: var(--ink); color: #0a0b10; border-color: var(--ink); }
+.btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line-strong); }
+.btn-ghost:hover { background: var(--elevated); }
 
 .tag-flag { background: var(--flag-bg); color: var(--flag-fg); }
 .tag-ask { background: var(--ask-bg); color: var(--ask-fg); }
 .tag-miss { background: var(--miss-bg); color: var(--miss-fg); }
 
+.divider { height: 1px; background: linear-gradient(90deg, transparent, var(--line-strong) 20%, var(--line-strong) 80%, transparent); }
+
+/* Hero graphics: spotlight + dot grid (static) */
+.hero-glow { background: radial-gradient(55% 45% at 50% 28%, rgba(99, 102, 241, .30), transparent 70%), radial-gradient(30% 40% at 94% 38%, rgba(255, 180, 138, .10), transparent 70%); }
+.dot-grid { background-image: radial-gradient(rgba(255, 255, 255, .07) 1px, transparent 1px); background-size: 24px 24px; -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, #000 25%, transparent 75%); mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, #000 25%, transparent 75%); }
+.closing-glow { background: radial-gradient(closest-side, rgba(99, 102, 241, .45), rgba(99, 102, 241, .12) 55%, transparent); }
+
+/* Demo window: gradient border, glow, travelling beam (transform-only) */
+.beam-wrap { position: relative; overflow: hidden; border-radius: 18px; padding: 1px; background: linear-gradient(135deg, rgba(139, 147, 255, .55), rgba(139, 147, 255, .06) 55%, rgba(139, 147, 255, .2)); box-shadow: 0 0 80px -20px rgba(99, 102, 241, .45); }
+.beam { position: absolute; left: 50%; top: 50%; width: 220%; aspect-ratio: 1; translate: -50% -50%; background: conic-gradient(from 0deg, transparent 0 90%, rgba(184, 189, 255, .95) 97%, transparent 100%); animation: spin 9s linear infinite; pointer-events: none; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.window { position: relative; background: var(--surface); border-radius: 17px; }
+
+/* Cursor spotlight on cards (set by a small pointer handler; mouse only) */
+.spot { position: relative; transition: border-color .2s ease; }
+.spot::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .25s ease; background: radial-gradient(320px circle at var(--x, 50%) var(--y, 50%), rgba(139, 147, 255, .13), transparent 70%); }
+@media (hover: hover) { .spot:hover { border-color: var(--line-strong); } .spot:hover::before { opacity: 1; } }
+
 /* Scroll fade-up (8px, once). Content stays visible without JS. */
 html.js .reveal { opacity: 0; transform: translateY(8px); transition: opacity .4s ease-out var(--d, 0s), transform .4s ease-out var(--d, 0s); animation: force-in .01s 3s forwards; }
 html.js .reveal.in { opacity: 1; transform: none; }
-@keyframes force-in { to { opacity: 1; transform: none; } }
+@keyframes force-in { to { opacity: 1; transform: none; filter: none; } }
 
-/* Single overlay reveal: highlight fades in, then rows slide in with a stagger. */
+/* Overlay rows: start blurred and transparent, sharpen once with a stagger. */
 html.js .seq .hl { background-color: transparent; transition: background-color .5s ease-out .3s; animation: force-hl .01s 3.5s forwards; }
 html.js .seq.in .hl { background-color: var(--flag-bg); }
-html.js .seq .row { opacity: 0; transform: translateX(12px); transition: opacity .4s ease-out calc(.8s + var(--i, 0) * .15s), transform .4s ease-out calc(.8s + var(--i, 0) * .15s); animation: force-in .01s 3.5s forwards; }
-html.js .seq.in .row { opacity: 1; transform: none; }
+html.js .seq .row { opacity: 0; filter: blur(6px); transform: translateY(8px); transition: opacity .45s ease-out calc(.8s + var(--i, 0) * .15s), filter .45s ease-out calc(.8s + var(--i, 0) * .15s), transform .45s ease-out calc(.8s + var(--i, 0) * .15s); animation: force-in .01s 3.5s forwards; }
+html.js .seq.in .row { opacity: 1; filter: none; transform: none; }
 @keyframes force-hl { to { background-color: var(--flag-bg); } }
+
+/* Ghost-to-clear demo: nearly transparent + blurred; sharpens on in-view, hover or focus, then stays clear. */
+html.js .ghost .ov { opacity: .3; filter: blur(4px); transition: opacity .8s ease-out .5s, filter .8s ease-out .5s; animation: force-in .01s 3.5s forwards; }
+html.js .ghost.in .ov, html.js .ghost:hover .ov, html.js .ghost:focus-visible .ov, html.js .ghost:focus-within .ov { opacity: 1; filter: none; }
+html.js .ghost:hover .ov, html.js .ghost:focus-visible .ov { transition-delay: 0s; }
+
+@media (max-width: 640px) { .beam-wrap { box-shadow: 0 0 40px -16px rgba(99, 102, 241, .4); } }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  html.js .reveal, html.js .seq .row { opacity: 1; transform: none; transition: none; animation: none; }
+  .beam { display: none; }
+  html.js .reveal, html.js .seq .row, html.js .ghost .ov { opacity: 1; filter: none; transform: none; transition: none; animation: none; }
   html.js .seq .hl { background-color: var(--flag-bg); transition: none; animation: none; }
-  .btn, .ghost { transition: none; }
+  .btn { transition: none; }
 }
