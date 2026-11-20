@@ -4,19 +4,24 @@ import { CTAButton } from "@/components/CTAButton";
 import { ExtensionButton } from "@/components/ExtensionButton";
 import { Reveal } from "@/components/Reveal";
 import { DemoWindow } from "@/components/DemoWindow";
+import { GhostDemo } from "@/components/GhostDemo";
 import { Features } from "@/components/Features";
+
+const Divider = () => <div aria-hidden="true" className="divider mx-auto max-w-5xl" />;
 
 export default function Home() {
   return (
     <>
       <Nav />
       <main>
-        <section className="px-4 pb-20 pt-16 text-center sm:px-6 sm:pt-24">
+        <section className="relative isolate px-4 pb-20 pt-16 text-center sm:px-6 sm:pt-24">
+          <div aria-hidden="true" className="hero-glow absolute inset-0 -z-20" />
+          <div aria-hidden="true" className="dot-grid absolute inset-0 -z-10" />
           <Reveal>
             <p className="mb-5 text-xs font-medium uppercase tracking-[0.16em] text-muted">Intelligence in Stealth.</p>
             <h1 className="h1 mx-auto max-w-[1180px]">
               Real-time conversation intelligence <br className="hidden md:block" />
-              that stays <span className="accent-serif text-accent">out of sight.</span>
+              that stays <span className="accent-serif">out of sight.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-balance text-lg text-muted">
               QUERLY listens, understands and analyses conversations in the background, surfacing important insights and suggested questions when you need them.
@@ -26,8 +31,7 @@ export default function Home() {
               <ExtensionButton />
             </div>
           </Reveal>
-          <div className="relative mt-16 sm:mt-20">
-            <div aria-hidden="true" className="absolute inset-x-0 -inset-y-10 -z-10 mx-auto max-w-4xl [background:radial-gradient(closest-side,rgba(201,184,255,.28),transparent)]" />
+          <div className="mt-16 sm:mt-20">
             <Reveal delay={0.1}><DemoWindow /></Reveal>
           </div>
           <Reveal delay={0.1}>
@@ -35,6 +39,7 @@ export default function Home() {
           </Reveal>
         </section>
 
+        <Divider />
         <section id="features" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-20 sm:px-6 sm:py-28">
           <Reveal>
             <h2 className="h2 mx-auto max-w-3xl text-center">Stay in the conversation. Stay one step ahead.</h2>
@@ -42,6 +47,7 @@ export default function Home() {
           <Reveal delay={0.05}><Features /></Reveal>
         </section>
 
+        <Divider />
         <section id="how-it-works" className="mx-auto max-w-4xl scroll-mt-20 px-4 py-20 text-center sm:px-6 sm:py-28">
           <Reveal>
             <h2 className="h2 mx-auto max-w-3xl">Present in every conversation. Visible when you need it.</h2>
@@ -49,7 +55,7 @@ export default function Home() {
               QUERLY helps you focus on the conversation while AI works quietly in the background.
             </p>
           </Reveal>
-          <div className="mt-12"><Reveal><DemoWindow short /></Reveal></div>
+          <div className="mt-12"><Reveal><GhostDemo /></Reveal></div>
           <Reveal>
             <ul className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted">
               {[["Claims", "bg-flag-fg"], ["Promises", "bg-ask-fg"], ["Missing information", "bg-miss-fg"]].map(([w, c]) => (
@@ -59,15 +65,15 @@ export default function Home() {
           </Reveal>
         </section>
 
-        <section className="px-4 pb-24 sm:px-6">
+        <Divider />
+        <section className="relative isolate overflow-hidden px-4 pb-40 pt-24 text-center sm:px-6 sm:pb-56 sm:pt-32">
+          <div aria-hidden="true" className="closing-glow absolute -bottom-40 left-1/2 -z-10 h-[22rem] w-[130vw] max-w-[1100px] -translate-x-1/2 sm:-bottom-64 sm:h-[34rem]" />
           <Reveal>
-            <div className="card mx-auto max-w-5xl px-6 py-20 text-center sm:py-28">
-              <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted">QUERLY AI</p>
-              <h2 className="h1 mx-auto mt-4 max-w-3xl">Think beyond the conversation.</h2>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                <CTAButton />
-                <ExtensionButton />
-              </div>
+            <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted">QUERLY AI</p>
+            <h2 className="h1 mx-auto mt-4 max-w-3xl">Think beyond the conversation.</h2>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <CTAButton />
+              <ExtensionButton />
             </div>
           </Reveal>
         </section>
