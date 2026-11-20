@@ -1,68 +1,80 @@
 @import "tailwindcss";
 
 :root {
-  --cloud: #f8faff;
-  --lavender-300: #c9b8ff;
-  --lavender-100: #e6deff;
-  --sky-300: #bfe3ff;
-  --sky-100: #ddf0ff;
-  --peach-200: #ffd4b8;
-  --peach-400: #ffb48a;
-  --ink: #0a0a0a;
-  --ink-soft: #4a4a55;
+  --canvas: #f7f8fa;
+  --surface: #ffffff;
+  --line: #e5e7eb;
+  --ink: #0e1116;
+  --muted: #5b6270;
+  --accent: #4f5bd5;
+  --accent-hover: #4450c4;
+  --accent-tint: #eef0ff;
+  --flag-bg: #fef3c7;
+  --flag-fg: #92400e;
+  --ask-bg: #eef0ff;
+  --ask-fg: #3730a3;
+  --miss-bg: #f1f5f9;
+  --miss-fg: #334155;
 }
 
 @theme inline {
-  --color-cloud: var(--cloud);
-  --color-lavender-300: var(--lavender-300);
-  --color-lavender-100: var(--lavender-100);
-  --color-sky-300: var(--sky-300);
-  --color-sky-100: var(--sky-100);
-  --color-peach-200: var(--peach-200);
-  --color-peach-400: var(--peach-400);
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
   --color-ink: var(--ink);
-  --color-ink-soft: var(--ink-soft);
-  --font-sans: var(--font-manrope), system-ui, sans-serif;
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-tint: var(--accent-tint);
+  --color-flag-bg: var(--flag-bg);
+  --color-flag-fg: var(--flag-fg);
+  --color-ask-bg: var(--ask-bg);
+  --color-ask-fg: var(--ask-fg);
+  --color-miss-bg: var(--miss-bg);
+  --color-miss-fg: var(--miss-fg);
+  --font-sans: var(--font-geist), system-ui, sans-serif;
   --font-script: var(--font-script), cursive;
+  --font-serif: var(--font-instrument), Georgia, serif;
 }
 
-html { scroll-behavior: smooth; }
-body {
-  background: linear-gradient(180deg, var(--cloud), #fff 60%);
-  color: var(--ink);
-  font-family: var(--font-sans);
-  overflow-x: hidden;
-}
-:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 12px; }
+html { scroll-behavior: smooth; overflow-x: clip; }
+body { background: var(--canvas); color: var(--ink); font-family: var(--font-sans); font-size: 1.0625rem; line-height: 1.6; overflow-x: clip; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
 
-.display { font-size: clamp(2.5rem, 7.5vw, 6rem); line-height: 1.02; letter-spacing: -0.045em; font-weight: 300; }
-.h2 { font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.06; letter-spacing: -0.04em; font-weight: 300; }
+.h1, .h2 { font-weight: 500; letter-spacing: -0.03em; line-height: 1.05; color: var(--ink); text-wrap: balance; }
+.h1 { font-size: clamp(2rem, 4.6vw, 3.75rem); }
+.h2 { font-size: clamp(1.75rem, 3.6vw, 3rem); }
+.accent-serif { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+.deva { font-family: var(--font-deva), var(--font-sans); }
 
-.glass {
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(24px) saturate(140%);
-  -webkit-backdrop-filter: blur(24px) saturate(140%);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.7) inset, 0 10px 60px -20px rgba(150, 130, 255, 0.35);
-}
-.glass-border { position: relative; }
-.glass-border::before {
-  content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
-  background: linear-gradient(135deg, var(--lavender-300), var(--sky-300), transparent 70%);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
-}
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
+.window { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 1px 2px rgba(16, 24, 40, .04), 0 12px 32px -12px rgba(16, 24, 40, .12); }
 
-.blob { position: absolute; border-radius: 9999px; filter: blur(80px); opacity: 0.7; will-change: transform; animation: drift 26s ease-in-out infinite alternate; }
-@keyframes drift {
-  from { transform: translate3d(0, 0, 0) scale(1); }
-  to { transform: translate3d(8vw, 6vh, 0) scale(1.15); }
-}
+.btn { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 22px; border-radius: 10px; font-size: .95rem; font-weight: 500; transition: background-color .12s ease, border-color .12s ease; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-ghost { background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+.btn-ghost:hover { border-color: #c9ced6; }
 
-.ghost-overlay { opacity: 0.88; filter: saturate(0.9); transition: opacity .5s, transform .5s, filter .5s; }
-.ghost-overlay:hover, .ghost-overlay:focus-within { opacity: 1; filter: none; transform: translateY(-4px); }
+.tag-flag { background: var(--flag-bg); color: var(--flag-fg); }
+.tag-ask { background: var(--ask-bg); color: var(--ask-fg); }
+.tag-miss { background: var(--miss-bg); color: var(--miss-fg); }
+
+/* Scroll fade-up (8px, once). Content stays visible without JS. */
+html.js .reveal { opacity: 0; transform: translateY(8px); transition: opacity .4s ease-out var(--d, 0s), transform .4s ease-out var(--d, 0s); animation: force-in .01s 3s forwards; }
+html.js .reveal.in { opacity: 1; transform: none; }
+@keyframes force-in { to { opacity: 1; transform: none; } }
+
+/* Single overlay reveal: highlight fades in, then rows slide in with a stagger. */
+html.js .seq .hl { background-color: transparent; transition: background-color .5s ease-out .3s; animation: force-hl .01s 3.5s forwards; }
+html.js .seq.in .hl { background-color: var(--flag-bg); }
+html.js .seq .row { opacity: 0; transform: translateX(12px); transition: opacity .4s ease-out calc(.8s + var(--i, 0) * .15s), transform .4s ease-out calc(.8s + var(--i, 0) * .15s); animation: force-in .01s 3.5s forwards; }
+html.js .seq.in .row { opacity: 1; transform: none; }
+@keyframes force-hl { to { background-color: var(--flag-bg); } }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .blob { animation: none; }
-  *, *::before, *::after { transition-duration: 0.01ms !important; }
+  html.js .reveal, html.js .seq .row { opacity: 1; transform: none; transition: none; animation: none; }
+  html.js .seq .hl { background-color: var(--flag-bg); transition: none; animation: none; }
+  .btn, .ghost { transition: none; }
 }

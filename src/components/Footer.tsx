@@ -2,13 +2,13 @@ import { Logo } from "./Logo";
 
 export function Footer() {
   return (
-    <footer className="px-6 pb-10 pt-20">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 border-t border-white/70 pt-8 sm:flex-row">
+    <footer className="border-t border-line px-6 py-10">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-5 sm:flex-row">
         <Logo />
-        <p className="text-sm text-ink-soft">© 2026 QUERLY</p>
-        <ul className="flex gap-6 text-sm text-ink-soft">
+        <p className="text-sm text-muted">© 2026 QUERLY</p>
+        <ul className="flex gap-6 text-sm text-muted">
           {["Privacy", "Terms", "Contact"].map((l) => (
-            <li key={l}><a href="#" className="hover:text-ink transition">{l}</a></li>
+            <li key={l}><a href="#" className="transition-colors hover:text-ink">{l}</a></li>
           ))}
         </ul>
       </div>
