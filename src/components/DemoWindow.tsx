@@ -8,12 +8,14 @@ const LINES = [
 ];
 
 /** Static product shot. Highlight fades in, then overlay rows slide in — once, on scroll into view. */
-export function DemoWindow({ short = false }: { short?: boolean }) {
-  const lines = short ? LINES.slice(0, 2) : LINES;
-  const rows = short ? [OVERLAY_ROWS[0], OVERLAY_ROWS[2]] : OVERLAY_ROWS;
+export function DemoWindow() {
+  const lines = LINES;
+  const rows = OVERLAY_ROWS;
   return (
     <figure className="mx-auto w-full max-w-4xl">
-      <div className="seq window overflow-hidden" role="group" aria-label="Sample call with the QUERLY overlay">
+      <div className="seq beam-wrap" role="group" aria-label="Sample call with the QUERLY overlay">
+        <span className="beam" aria-hidden="true" />
+        <div className="window overflow-hidden">
         <div className="flex items-center gap-1.5 border-b border-line px-4 py-3" aria-hidden="true">
           <i className="h-2.5 w-2.5 rounded-full bg-line" /><i className="h-2.5 w-2.5 rounded-full bg-line" /><i className="h-2.5 w-2.5 rounded-full bg-line" />
         </div>
@@ -23,12 +25,13 @@ export function DemoWindow({ short = false }: { short?: boolean }) {
               <li key={i}>
                 <span className="block text-xs font-medium text-muted">{l.who}</span>
                 {l.pre}
-                {l.hl && <mark className="hl rounded px-0.5 text-ink">{l.hl}</mark>}
+                {l.hl && <mark className="hl rounded px-0.5 text-flag-fg">{l.hl}</mark>}
                 {l.post}
               </li>
             ))}
           </ul>
           <Overlay rows={rows} />
+        </div>
         </div>
       </div>
       <figcaption className="mt-3 text-center text-sm text-muted">Sample call · fictional</figcaption>
