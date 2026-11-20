@@ -1,11 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Instrument_Serif, Dancing_Script, Noto_Sans_Devanagari } from "next/font/google";
+import { Geist, Dancing_Script, Noto_Sans_Devanagari } from "next/font/google";
 import "./globals.css";
 import { SITE_DESCRIPTION, SITE_URL } from "@/config/site";
 import { RevealRoot } from "@/components/RevealRoot";
 
 const geist = Geist({ variable: "--font-geist", subsets: ["latin"], display: "swap" });
-const instrument = Instrument_Serif({ variable: "--font-instrument", subsets: ["latin"], weight: "400", style: "italic", display: "swap" });
 const deva = Noto_Sans_Devanagari({ variable: "--font-deva", subsets: ["devanagari"], weight: ["400", "500"], display: "swap", preload: false });
 const script = Dancing_Script({ variable: "--font-script", subsets: ["latin"], weight: ["500", "600"], display: "swap" });
 
@@ -20,12 +19,13 @@ export const metadata: Metadata = {
   icons: { icon: "/icon.svg" },
 };
 
-export const viewport: Viewport = { themeColor: "#0A0B10", colorScheme: "dark" };
+export const viewport: Viewport = { themeColor: "#F4F1EA" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geist.variable} ${instrument.variable} ${script.variable} ${deva.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${geist.variable} ${script.variable} ${deva.variable}`} suppressHydrationWarning>
       <head>
+        <link rel="preload" as="image" href="/paper.webp" type="image/webp" />
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>
       <body className="min-h-screen">
