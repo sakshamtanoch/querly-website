@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --paper: #f4f1ea;
-  --paper-light: #faf8f3;
+  --pearl: #f8f9fb;
+  --pearl-card: #ffffff;
+  --grid-line: #dde1e8;
+  --paper: var(--pearl);
+  --paper-light: var(--pearl-card);
   --ink: #0b0b10;
   --muted: #5e5b54;
   --line: #dad5c9;
@@ -17,6 +20,9 @@
 @theme inline {
   --color-paper: var(--paper);
   --color-paper-light: var(--paper-light);
+  --color-pearl: var(--pearl);
+  --color-pearl-card: var(--pearl-card);
+  --color-grid-line: var(--grid-line);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-line: var(--line);
@@ -31,13 +37,25 @@
 
 html { scroll-behavior: smooth; overflow-x: clip; background: var(--paper); }
 body {
-  background-color: var(--paper);
-  background-image: linear-gradient(rgba(244, 241, 234, .62), rgba(244, 241, 234, .62)), url("/paper.webp");
-  background-size: auto, 1200px 1200px;
-  background-blend-mode: normal, multiply;
+  position: relative;
   color: var(--ink); font-family: var(--font-sans); font-size: 1.0625rem; line-height: 1.6; overflow-x: clip;
 }
-@media (max-width: 767px) { body { background-size: auto, 700px 700px; background-attachment: scroll; } }
+/* Note-taking graph-paper grid: CSS only, static. Strongest at the left/right edges, softer behind the text column. */
+body::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(221, 225, 232, .85) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(221, 225, 232, .85) 1px, transparent 1px),
+    linear-gradient(to right, rgba(221, 225, 232, .6) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(221, 225, 232, .6) 1px, transparent 1px);
+  background-size: 128px 128px, 128px 128px, 32px 32px, 32px 32px;
+  background-attachment: scroll;
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, .55) 18%, rgba(0, 0, 0, .22) 34%, rgba(0, 0, 0, .22) 66%, rgba(0, 0, 0, .55) 82%, #000 100%);
+  mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, .55) 18%, rgba(0, 0, 0, .22) 34%, rgba(0, 0, 0, .22) 66%, rgba(0, 0, 0, .55) 82%, #000 100%);
+}
+@media (max-width: 767px) { body::before { background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px; } }
+/* Faint pearl sheen, hero only (<= 5% opacity) */
+.pearl-sheen { background: radial-gradient(40% 50% at 12% 20%, rgba(201, 184, 255, .05), transparent 70%), radial-gradient(40% 50% at 88% 30%, rgba(191, 227, 255, .05), transparent 70%), radial-gradient(35% 45% at 60% 90%, rgba(255, 61, 174, .04), transparent 70%); }
 :focus-visible { outline: 2px solid var(--neon-blue); outline-offset: 3px; border-radius: 8px; }
 .on-blue :focus-visible { outline-color: var(--paper); }
 
@@ -106,8 +124,7 @@ html.js .reveal.in { opacity: 1; transform: none; }
 .lift { transition: transform .25s ease; }
 .lift:hover { transform: translateY(-4px) rotate(0deg) !important; }
 
-.blue-tex { position: relative; isolation: isolate; background: var(--contrast); }
-.blue-tex::before { content: ""; position: absolute; inset: 0; z-index: -1; background: url("/paper.webp") 0 0 / 1200px 1200px; mix-blend-mode: multiply; opacity: .45; pointer-events: none; }
+.blue-tex { background: var(--contrast); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

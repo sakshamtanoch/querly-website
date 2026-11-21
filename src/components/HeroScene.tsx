@@ -12,7 +12,8 @@ const lines = (w: number[]) => w.map((x, i) => <div key={i} className="mb-2 h-2 
 export function HeroScene() {
   const [ghost, setGhost] = useState(false);
   return (
-    <section className="relative px-4 pb-24 pt-14 text-center sm:px-8 sm:pt-20">
+    <section className="relative isolate px-4 pb-24 pt-14 text-center sm:px-8 sm:pt-20">
+      <div aria-hidden="true" className="pearl-sheen pointer-events-none absolute inset-0 -z-10" />
       <div className="relative mx-auto max-w-7xl">
         {/* Floating windows + cursors (xl and up) */}
         <div className="pointer-events-none absolute inset-0 hidden xl:block" aria-hidden="false">

@@ -19,13 +19,12 @@ export const metadata: Metadata = {
   icons: { icon: "/icon.svg" },
 };
 
-export const viewport: Viewport = { themeColor: "#F4F1EA" };
+export const viewport: Viewport = { themeColor: "#F8F9FB" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${geist.variable} ${script.variable} ${deva.variable}`} suppressHydrationWarning>
       <head>
-        <link rel="preload" as="image" href="/paper.webp" type="image/webp" />
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>
       <body className="min-h-screen">
