@@ -13,11 +13,11 @@ export default function ComingSoon() {
     <>
       <Nav links={false} />
       <main className="mx-auto flex min-h-[60vh] max-w-3xl flex-col items-center justify-center px-6 text-center">
-        <h1 className="display">Coming soon.</h1>
-        <p className="mt-6 text-lg text-ink-soft">QUERLY is almost ready.</p>
+        <h1 className="h1">Coming soon.</h1>
+        <p className="mt-5 text-lg text-muted">QUERLY is almost ready.</p>
         <Link
           href="/"
-          className="glass mt-10 inline-flex items-center rounded-full px-7 py-3.5 text-[0.95rem] font-medium transition duration-300 hover:-translate-y-0.5 hover:bg-white/80"
+          className="btn btn-ghost mt-8"
         >
           Back to home
         </Link>
