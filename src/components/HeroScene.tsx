@@ -22,14 +22,18 @@ export function HeroScene() {
           </FloatWindow>
           <FloatWindow title="Notes" depth={10} rotate={1} className="absolute right-2 top-0 w-[15rem]">{lines([90, 72, 84, 55])}</FloatWindow>
           <FloatWindow title="Draft" depth={14} rotate={-0.6} className="absolute bottom-24 left-6 w-[13rem]">{lines([80, 94, 60])}</FloatWindow>
-          <div className="pointer-events-auto absolute bottom-16 right-0 w-[17.5rem]" style={{ rotate: "0.8deg" }}><OverlayCard ghost={ghost} /></div>
+          <div className="pointer-events-auto absolute bottom-16 right-0 w-[17.5rem]" style={{ rotate: "0.8deg" }}><OverlayCard /></div>
           <CursorTag label="Claim" color="orange" className="left-[19rem] top-24" dx={-30} dy={18} />
           <CursorTag label="Promise" color="pink" className="right-[16rem] top-40" dx={26} dy={-14} delay={3} />
           <CursorTag label="Missing information" color="green" className="bottom-[19rem] right-[3rem]" dx={-24} dy={-14} delay={5} />
         </div>
 
         <div className="relative mx-auto max-w-3xl">
-          <h1 className="statement">Intelligence <br />in Stealth.</h1>
+          <h1
+            className={`statement -mx-4 -my-4 px-4 py-4 transition-[filter,opacity] duration-[400ms] ease-out motion-reduce:transition-none ${ghost ? "opacity-55 blur-[10px]" : "opacity-100 blur-0"}`}
+          >
+            Intelligence <br />in Stealth.
+          </h1>
           <div className="mt-8"><StealthToggle checked={ghost} onChange={setGhost} /></div>
           <div className="mt-14">
             <h2 className="h1 mx-auto">
@@ -49,7 +53,7 @@ export function HeroScene() {
         {/* Mobile / tablet: a short stack instead of floating windows */}
         <div className="relative mx-auto mt-14 max-w-md space-y-4 xl:hidden">
           <FloatWindow label="Sample call · fictional" title="Sample call" rotate={-0.8}><CallLines short /><p className="mt-3 text-[11px] text-muted">Sample · fictional</p></FloatWindow>
-          <div style={{ rotate: "0.8deg" }}><OverlayCard ghost={ghost} /></div>
+          <div style={{ rotate: "0.8deg" }}><OverlayCard /></div>
           <CursorTag label="Claim" color="orange" className="right-4 top-12" dx={-14} dy={10} hideOnMobile />
           <CursorTag label="Missing information" color="green" className="bottom-4 left-4" dx={14} dy={-10} delay={4} hideOnMobile />
         </div>
